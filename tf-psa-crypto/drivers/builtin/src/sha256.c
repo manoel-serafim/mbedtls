@@ -489,7 +489,7 @@ static int mbedtls_internal_sha256_process_c(mbedtls_sha256_context *ctx,
     unsigned int j;
     for (i = 0; i < 64; i++) {
         if (i < 16) {
-            local.W[i] = MBEDTLS_GET_UINT32_BE(data, 4 * i);
+            local.W[i] = MBEDTLS_GET_UINT32_BE(data, i << 2);
         } else {
             R(i);
         }
@@ -521,35 +521,35 @@ static int mbedtls_internal_sha256_process_c(mbedtls_sha256_context *ctx,
 
     i=0;
     do {
-        local.W[i] = MBEDTLS_GET_UINT32_BE(data, 4 * i);
+        local.W[i] = MBEDTLS_GET_UINT32_BE(data, i << 2);
         P(local.A[0], local.A[1], local.A[2], local.A[3], local.A[4],
           local.A[5], local.A[6], local.A[7], local.W[i], K[i]);
         ++i;
-        local.W[i] = MBEDTLS_GET_UINT32_BE(data, 4 * i);
+        local.W[i] = MBEDTLS_GET_UINT32_BE(data, i << 2);
         P(local.A[7], local.A[0], local.A[1], local.A[2], local.A[3],
           local.A[4], local.A[5], local.A[6], local.W[i], K[i]);
         ++i;
-        local.W[i] = MBEDTLS_GET_UINT32_BE(data, 4 * i);
+        local.W[i] = MBEDTLS_GET_UINT32_BE(data, i << 2);
         P(local.A[6], local.A[7], local.A[0], local.A[1], local.A[2],
           local.A[3], local.A[4], local.A[5], local.W[i], K[i]);
         ++i;
-        local.W[i] = MBEDTLS_GET_UINT32_BE(data, 4 * i);
+        local.W[i] = MBEDTLS_GET_UINT32_BE(data, i << 2);
         P(local.A[5], local.A[6], local.A[7], local.A[0], local.A[1],
           local.A[2], local.A[3], local.A[4], local.W[i], K[i]);
         ++i;
-        local.W[i] = MBEDTLS_GET_UINT32_BE(data, 4 * i);
+        local.W[i] = MBEDTLS_GET_UINT32_BE(data, i << 2);
         P(local.A[4], local.A[5], local.A[6], local.A[7], local.A[0],
           local.A[1], local.A[2], local.A[3], local.W[i], K[i]);
         ++i;
-        local.W[i] = MBEDTLS_GET_UINT32_BE(data, 4 * i);
+        local.W[i] = MBEDTLS_GET_UINT32_BE(data, i << 2);
         P(local.A[3], local.A[4], local.A[5], local.A[6], local.A[7],
           local.A[0], local.A[1], local.A[2], local.W[i], K[i]);
         ++i;
-        local.W[i] = MBEDTLS_GET_UINT32_BE(data, 4 * i);
+        local.W[i] = MBEDTLS_GET_UINT32_BE(data, i << 2);
         P(local.A[2], local.A[3], local.A[4], local.A[5], local.A[6],
           local.A[7], local.A[0], local.A[1], local.W[i], K[i]);
         ++i;
-        local.W[i] = MBEDTLS_GET_UINT32_BE(data, 4 * i);
+        local.W[i] = MBEDTLS_GET_UINT32_BE(data, i << 2);
         P(local.A[1], local.A[2], local.A[3], local.A[4], local.A[5],
           local.A[6], local.A[7], local.A[0], local.W[i], K[i]);
         ++i;
