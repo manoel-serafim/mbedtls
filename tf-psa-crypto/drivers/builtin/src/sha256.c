@@ -486,6 +486,7 @@ static int mbedtls_internal_sha256_process_c(mbedtls_sha256_context *ctx,
         local.A[i] = ctx->state[i];
     }
 
+    unsigned int j;
     for (i = 0; i < 64; i++) {
         if (i < 16) {
             local.W[i] = MBEDTLS_GET_UINT32_BE(data, 4 * i);
@@ -496,10 +497,10 @@ static int mbedtls_internal_sha256_process_c(mbedtls_sha256_context *ctx,
         P(local.A[0], local.A[1], local.A[2], local.A[3], local.A[4],
           local.A[5], local.A[6], local.A[7], local.W[i], K[i]);
 
-        local.temp1 = local.A[7]; local.A[7] = local.A[6];
-        local.A[6] = local.A[5]; local.A[5] = local.A[4];
-        local.A[4] = local.A[3]; local.A[3] = local.A[2];
-        local.A[2] = local.A[1]; local.A[1] = local.A[0];
+        local.temp1 = local.A[7]; 
+        for(j = 7; j > 0; --j){
+            local.A[j] = local.A[j-1];
+        }
         local.A[0] = local.temp1;
     }
 
