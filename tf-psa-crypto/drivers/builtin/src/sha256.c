@@ -512,7 +512,7 @@ static int mbedtls_internal_sha256_process_c(mbedtls_sha256_context *ctx,
     local.A[5] = ctx->state[5];
     local.A[6] = ctx->state[6];
     local.A[7] = ctx->state[7];
-    
+
     i=0;
     do {
         local.W[i] = MBEDTLS_GET_UINT32_BE(data, 4 * i);
@@ -550,24 +550,32 @@ static int mbedtls_internal_sha256_process_c(mbedtls_sha256_context *ctx,
     } while( i < 16 );
     
 
-    for (i = 16; i < 64; i += 8) {
+    do {
         P(local.A[0], local.A[1], local.A[2], local.A[3], local.A[4],
-          local.A[5], local.A[6], local.A[7], R(i+0), K[i+0]);
+          local.A[5], local.A[6], local.A[7], R(i), K[i]);
+        ++i;
         P(local.A[7], local.A[0], local.A[1], local.A[2], local.A[3],
-          local.A[4], local.A[5], local.A[6], R(i+1), K[i+1]);
+          local.A[4], local.A[5], local.A[6], R(i), K[i]);
+        ++i;
         P(local.A[6], local.A[7], local.A[0], local.A[1], local.A[2],
-          local.A[3], local.A[4], local.A[5], R(i+2), K[i+2]);
+          local.A[3], local.A[4], local.A[5], R(i), K[i]);
+        ++i;
         P(local.A[5], local.A[6], local.A[7], local.A[0], local.A[1],
-          local.A[2], local.A[3], local.A[4], R(i+3), K[i+3]);
+          local.A[2], local.A[3], local.A[4], R(i), K[i]);
+        ++i;
         P(local.A[4], local.A[5], local.A[6], local.A[7], local.A[0],
-          local.A[1], local.A[2], local.A[3], R(i+4), K[i+4]);
+          local.A[1], local.A[2], local.A[3], R(i), K[i]);
+        ++i;
         P(local.A[3], local.A[4], local.A[5], local.A[6], local.A[7],
-          local.A[0], local.A[1], local.A[2], R(i+5), K[i+5]);
+          local.A[0], local.A[1], local.A[2], R(i), K[i]);
+        ++i;
         P(local.A[2], local.A[3], local.A[4], local.A[5], local.A[6],
-          local.A[7], local.A[0], local.A[1], R(i+6), K[i+6]);
+          local.A[7], local.A[0], local.A[1], R(i), K[i]);
+        ++i;
         P(local.A[1], local.A[2], local.A[3], local.A[4], local.A[5],
-          local.A[6], local.A[7], local.A[0], R(i+7), K[i+7]);
-    }
+          local.A[6], local.A[7], local.A[0], R(i), K[i]);
+        ++i;
+    }while(i < 64);
 #endif /* MBEDTLS_SHA256_SMALLER */
 
     for (i = 0; i < 8; i++) {
