@@ -479,8 +479,6 @@ static int mbedtls_internal_sha256_process_c(mbedtls_sha256_context *ctx,
 
     unsigned int i;
 
-    
-
 #if defined(MBEDTLS_SHA256_SMALLER)
     for (i = 0; i < 8; i++) {
         local.A[i] = ctx->state[i];
@@ -497,7 +495,7 @@ static int mbedtls_internal_sha256_process_c(mbedtls_sha256_context *ctx,
         P(local.A[0], local.A[1], local.A[2], local.A[3], local.A[4],
           local.A[5], local.A[6], local.A[7], local.W[i], K[i]);
 
-        local.temp1 = local.A[7]; 
+        local.temp1 = local.A[7];
         for(j = 7; j > 0; --j){
             local.A[j] = local.A[j-1];
         }
@@ -509,7 +507,7 @@ static int mbedtls_internal_sha256_process_c(mbedtls_sha256_context *ctx,
     }
 
 #else /* MBEDTLS_SHA256_SMALLER */
-    
+
     local.A[0] = ctx->state[0];
     local.A[1] = ctx->state[1];
     local.A[2] = ctx->state[2];
@@ -554,7 +552,6 @@ static int mbedtls_internal_sha256_process_c(mbedtls_sha256_context *ctx,
           local.A[6], local.A[7], local.A[0], local.W[i], K[i]);
         ++i;
     } while( i < 16 );
-    
 
     do {
         P(local.A[0], local.A[1], local.A[2], local.A[3], local.A[4],
