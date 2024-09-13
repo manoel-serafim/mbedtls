@@ -631,7 +631,7 @@ static int mbedtls_internal_sha512_process_c(mbedtls_sha512_context *ctx,
           local.A[5], local.A[6], local.A[7], local.W[i], K[i]);
 
         local.temp1 = local.A[7];
-        for(j = 7; j > 0; --j){
+        for (j = 7; j > 0; --j) {
             local.A[j] = local.A[j-1];
         }
         local.A[0] = local.temp1;
@@ -698,42 +698,50 @@ static int mbedtls_internal_sha512_process_c(mbedtls_sha512_context *ctx,
 
     do {
 
-        local.W[i] = ( S1(local.W[i -  2]) + local.W[i -  7] + S0(local.W[i - 15]) + local.W[i - 16]);
+        local.W[i] =
+            (S1(local.W[i -  2]) + local.W[i -  7] + S0(local.W[i - 15]) + local.W[i - 16]);
         P(local.A[0], local.A[1], local.A[2], local.A[3], local.A[4],
           local.A[5], local.A[6], local.A[7], local.W[i], K[i]);
         ++i;
 
-        local.W[i] = ( S1(local.W[i -  2]) + local.W[i -  7] + S0(local.W[i - 15]) + local.W[i - 16]);
+        local.W[i] =
+            (S1(local.W[i -  2]) + local.W[i -  7] + S0(local.W[i - 15]) + local.W[i - 16]);
         P(local.A[7], local.A[0], local.A[1], local.A[2], local.A[3],
           local.A[4], local.A[5], local.A[6], local.W[i], K[i]);
         ++i;
 
-        local.W[i] = ( S1(local.W[i -  2]) + local.W[i -  7] + S0(local.W[i - 15]) + local.W[i - 16]);
+        local.W[i] =
+            (S1(local.W[i -  2]) + local.W[i -  7] + S0(local.W[i - 15]) + local.W[i - 16]);
         P(local.A[6], local.A[7], local.A[0], local.A[1], local.A[2],
           local.A[3], local.A[4], local.A[5], local.W[i], K[i]);
         ++i;
 
-        local.W[i] = ( S1(local.W[i -  2]) + local.W[i -  7] + S0(local.W[i - 15]) + local.W[i - 16]);
+        local.W[i] =
+            (S1(local.W[i -  2]) + local.W[i -  7] + S0(local.W[i - 15]) + local.W[i - 16]);
         P(local.A[5], local.A[6], local.A[7], local.A[0], local.A[1],
           local.A[2], local.A[3], local.A[4], local.W[i], K[i]);
         ++i;
 
-        local.W[i] = ( S1(local.W[i -  2]) + local.W[i -  7] + S0(local.W[i - 15]) + local.W[i - 16]);
+        local.W[i] =
+            (S1(local.W[i -  2]) + local.W[i -  7] + S0(local.W[i - 15]) + local.W[i - 16]);
         P(local.A[4], local.A[5], local.A[6], local.A[7], local.A[0],
           local.A[1], local.A[2], local.A[3], local.W[i], K[i]);
         ++i;
 
-        local.W[i] = ( S1(local.W[i -  2]) + local.W[i -  7] + S0(local.W[i - 15]) + local.W[i - 16]);
+        local.W[i] =
+            (S1(local.W[i -  2]) + local.W[i -  7] + S0(local.W[i - 15]) + local.W[i - 16]);
         P(local.A[3], local.A[4], local.A[5], local.A[6], local.A[7],
           local.A[0], local.A[1], local.A[2], local.W[i], K[i]);
         ++i;
 
-        local.W[i] = ( S1(local.W[i -  2]) + local.W[i -  7] + S0(local.W[i - 15]) + local.W[i - 16]);
+        local.W[i] =
+            (S1(local.W[i -  2]) + local.W[i -  7] + S0(local.W[i - 15]) + local.W[i - 16]);
         P(local.A[2], local.A[3], local.A[4], local.A[5], local.A[6],
           local.A[7], local.A[0], local.A[1], local.W[i], K[i]);
         ++i;
 
-        local.W[i] = ( S1(local.W[i -  2]) + local.W[i -  7] + S0(local.W[i - 15]) + local.W[i - 16]);
+        local.W[i] =
+            (S1(local.W[i -  2]) + local.W[i -  7] + S0(local.W[i - 15]) + local.W[i - 16]);
         P(local.A[1], local.A[2], local.A[3], local.A[4], local.A[5],
           local.A[6], local.A[7], local.A[0], local.W[i], K[i]);
         ++i;
